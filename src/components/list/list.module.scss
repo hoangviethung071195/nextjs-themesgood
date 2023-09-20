@@ -1,0 +1,14 @@
+.box {
+  width: 100%;
+  max-width: 220px;
+  background-color: #fff;
+  color: #000;
+  border-radius: 5px;
+  z-index: 1;
+  .list-item {
+    cursor: pointer;
+    &:hover {
+      color: #ff4a52;
+    }
+  }
+}

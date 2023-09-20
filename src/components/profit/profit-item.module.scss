@@ -1,0 +1,21 @@
+.card-content {
+  text-align: center;
+  .card-title {
+    margin-top: 5px;
+    margin-bottom: 20px;
+  }
+  .card-actions {
+    margin-top: 15px;
+    margin-bottom: -10px;
+    button {
+      color: #222222;
+      opacity: 0.5;
+      transition: all 0.3s;
+      margin-left: -15px;
+      &:hover {
+        opacity: 1;
+        background-color: unset;
+      }
+    }
+  }
+}

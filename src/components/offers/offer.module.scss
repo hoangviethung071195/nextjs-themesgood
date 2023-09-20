@@ -1,0 +1,23 @@
+.footer {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 25px;
+  .rate-star-icons {
+    display: flex;
+    font-size: 0.6rem;
+    svg {
+      margin-top: -2px;
+      color: #d2d2d2;
+    }
+    > p {
+      margin-left: 3px;
+    }
+  }
+
+  .review-number {
+    svg {
+      margin-bottom: -4px;
+    }
+  }
+}
