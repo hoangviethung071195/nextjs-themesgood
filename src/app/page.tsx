@@ -5,7 +5,7 @@ import ProfitItem from '@/components/profit/profit-item';
 import Section from '@/components/section/section';
 import { getArticles, getDestination, getOffers, getProfits } from '@/services/tours.services';
 import { useEffect, useState } from 'react';
-import { SectionModel } from './models/Tours';
+import { SectionModel } from '../models/Tours';
 import styles from './page.module.scss';
 
 export default function Home() {
@@ -57,8 +57,6 @@ export default function Home() {
       setArticles(articlesList);
     });
   }, []);
-
-
 
   return (
     <main className={'bg-light'} style={{ paddingTop: '70px' }}>

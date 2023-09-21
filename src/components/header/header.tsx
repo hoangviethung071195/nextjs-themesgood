@@ -13,7 +13,6 @@ import styles from './header.module.scss';
 export default function Header() {
 
   const { isOpen } = React.useContext(menuBarContext);
-  console.log('isOpen ', isOpen);
 
   const monthsData = [
     {

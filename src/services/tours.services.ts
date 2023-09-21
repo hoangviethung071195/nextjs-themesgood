@@ -1,4 +1,4 @@
-import { ArticleModel, DestinationModel, OfferModel, ProfitModel } from '@/app/models/Tours';
+import { ArticleModel, DestinationModel, OfferModel, ProfitModel } from '@/models/Tours';
 export async function getDestination(): Promise<DestinationModel> {
   return fetch(window.location.href + '/api/tours/destinations')
     .then(r => r.json())
