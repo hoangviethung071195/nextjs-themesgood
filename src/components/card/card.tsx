@@ -24,7 +24,7 @@ export default function ImageCard(props: React.PropsWithChildren<{
   const cardMediaStyle = props.cardMediaStyle || {};
 
   return (
-    <Card className={styles['card']}>
+    <Card className={styles['my-card'] + ' ' + styles['card']}>
       <CardMedia
         className={props.cardMediaClass + ' ' + styles['card-media']}
         sx={{ width: '100%', height: '250px', position: 'relative', ...cardMediaStyle }}

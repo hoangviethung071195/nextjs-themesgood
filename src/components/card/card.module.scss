@@ -1,8 +1,11 @@
-.card {
+.my-card.card {
   flex-grow: 1;
   cursor: pointer;
   transition: all 0.2s;
   overflow: visible !important;
+  .card-media {
+    border-radius: 5px;
+  }
   .inner-text {
     margin-bottom: 10px;
     position: absolute;
@@ -26,7 +29,4 @@
       transition: all 0.2s;
     }
   }
-}
-.card-media {
-  border-radius: 5px;
 }

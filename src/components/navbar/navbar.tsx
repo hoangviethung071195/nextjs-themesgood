@@ -171,7 +171,7 @@ export default function Navbar() {
 
   return (
     <nav ref={ref} className={styles['wraper']}>
-      <AppBar ref={barRef} position="static" className={styles['top-bar'] + ' ' + (bar && !isIntersecting ? styles['current-bar'] : '')} style={{
+      <AppBar ref={barRef} position="static" id={styles['top-bar']} className={(bar && !isIntersecting ? styles['current-bar'] : '')} style={{
         opacity: (isIntersecting || bar) ? 1 : 0
       }} sx={{
         boxShadow: 'none'

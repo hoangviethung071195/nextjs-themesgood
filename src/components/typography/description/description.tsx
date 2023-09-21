@@ -13,7 +13,7 @@ export default function Description(props: PropsWithChildren<{
   const { description, color, className, sx } = props;
 
   return (
-    <Typography sx={sx} variant="body2" className={`${styles['description']} ${className}`} color={color ? '#fff' : ''}>
+    <Typography sx={sx} variant="body2" className={`${styles['my-description']} ${styles['description']} ${className}`} color={color ? '#fff' : ''}>
       {description}
       {props.children}
     </Typography>

@@ -13,7 +13,7 @@ export default function XSText(props: PropsWithChildren<{
   const { children, text, color, fontWeight, sx } = props;
 
   return (
-    <Typography variant="inherit" sx={sx} fontWeight={fontWeight ? fontWeight : 700} className={styles['text']} color={color ? '#fff' : ''}>
+    <Typography variant="inherit" sx={sx} fontWeight={fontWeight ? fontWeight : 700} id={styles['text']} color={color ? '#fff' : ''}>
       {children}
       {text}
     </Typography>

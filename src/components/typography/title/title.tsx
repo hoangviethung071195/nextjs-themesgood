@@ -12,7 +12,7 @@ export default function Title(props: PropsWithChildren<{
   const { title, color, className } = props;
 
   return (
-    <Typography variant="h6" className={`${styles['title']} ${className}`} color={color ? '#fff' : ''}>
+    <Typography variant="h6" className={`${styles['my-title']} ${styles['title']} ${className}`} color={color ? '#fff' : ''}>
       {title}
     </Typography>
   );

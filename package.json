@@ -19,16 +19,12 @@
     "@types/react": "^18.2.21",
     "@types/react-dom": "18.2.7",
     "animate.css": "^4.1.1",
-    "framer-motion": "^10.16.4",
     "next": "13.4.19",
     "nextjs-current-url": "^1.0.3",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-router-dom": "^6.16.0",
     "react-use-scroll-direction": "^0.1.0",
+    "sass": "^1.68.0",
     "typescript": "5.2.2"
-  },
-  "devDependencies": {
-    "sass": "^1.67.0"
   }
 }
