@@ -1,8 +1,6 @@
 import { toast } from 'react-toastify';
 import { RequestMethod } from '../consts/RequestMethod';
 
-const { API_ENDPOINT } = process.env;
-
 async function request<Result>(url: string, method: RequestMethod = RequestMethod.Get, body?: BodyInit): Promise<Result> {
   const token = '';
   const headers: HeadersInit = {
@@ -13,7 +11,7 @@ async function request<Result>(url: string, method: RequestMethod = RequestMetho
     headers['Content-Type'] = 'application/json';
   }
 
-  const res = await fetch(API_ENDPOINT + url, {
+  const res = await fetch('/api' + url, {
     method,
     body,
     headers
