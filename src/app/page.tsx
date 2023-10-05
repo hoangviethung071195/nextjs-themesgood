@@ -3,7 +3,7 @@ import AticleItem from '@/components/articles/article-item';
 import OfferItem from '@/components/offers/offer-item';
 import ProfitItem from '@/components/profit/profit-item';
 import Section from '@/components/section/section';
-import { getArticles, getDestination, getOffers, getProfits } from '@/services/tours.services';
+import { getArticles, getDestination, getOffers, getProfits } from '@/services/tours.service';
 import { useEffect, useState } from 'react';
 import { SectionModel } from '../models/Tours';
 import styles from './page.module.scss';

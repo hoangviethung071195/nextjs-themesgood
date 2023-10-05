@@ -1,4 +1,4 @@
-'use client'
+'use client';
 import SearchIcon from '@mui/icons-material/Search';
 import IconButton from '@mui/material/IconButton';
 import InputBase from '@mui/material/InputBase';
@@ -8,8 +8,8 @@ export default function SearchInput(props: {
   placeHolder?: string;
 
 }) {
-
   const { placeHolder } = props;
+
   return (
     <Paper
       component="form"

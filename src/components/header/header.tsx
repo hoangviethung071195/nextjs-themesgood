@@ -4,8 +4,8 @@ import CalendarTodayOutlinedIcon from '@mui/icons-material/CalendarTodayOutlined
 import ImportExportOutlinedIcon from '@mui/icons-material/ImportExportOutlined';
 import { Button, Container } from '@mui/material';
 import * as React from 'react';
-import SearchInput from '../input/search/search-input';
-import SelectInput from '../input/select/select-input';
+import SearchInput from '../input/search-input/search-input';
+import SelectInput from '../input/select-input/select-input';
 import Navbar from '../navbar/navbar';
 import SectionTitle from '../title/section-title';
 import styles from './header.module.scss';
