@@ -1,9 +1,7 @@
 import { toast } from 'react-toastify';
-// import { getCurrentUser } from './cookieStorage';
-// import { API_ENDPOINT } from '../constant/env';
 import { RequestMethod } from '../consts/RequestMethod';
 
-const API_ENDPOINT = window.location.href + '/api';
+const { API_ENDPOINT } = process.env;
 
 async function request<Result>(url: string, method: RequestMethod = RequestMethod.Get, body?: BodyInit): Promise<Result> {
   const token = '';
