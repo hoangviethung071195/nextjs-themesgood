@@ -1,11 +1,8 @@
-import Footer from '@/components/footer/footer';
-import Header from '@/components/header/header';
-import { MenuBarContextProvider } from '@/context/menu-bar-context';
+import { LayoutContextProvider } from '@/context/layout-context';
+import { Box } from '@mui/material';
 import type { Metadata } from 'next';
-import { Inter } from 'next/font/google';
+import { ReactNode } from 'react';
 import './globals.scss';
-
-const inter = Inter({ subsets: ['latin'] });
 
 export const metadata: Metadata = {
   title: 'Travelling',
@@ -16,17 +13,13 @@ export const metadata: Metadata = {
   }
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: ReactNode }) {
 
   return (
-    <MenuBarContextProvider >
-      <Header />
-      {children}
-      <Footer />
-    </MenuBarContextProvider>
-  );
+    <LayoutContextProvider>
+      <Box component='main'>
+        {children}
+      </Box>
+    </LayoutContextProvider>
+  )
 }

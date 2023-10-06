@@ -1,6 +1,6 @@
 'use client';
 
-import { menuBarContext } from '@/context/menu-bar-context';
+import { pages } from '@/utils/consts/menu';
 import CloseIcon from '@mui/icons-material/Close';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 import MenuIcon from '@mui/icons-material/Menu';
@@ -13,37 +13,24 @@ import IconButton from '@mui/material/IconButton';
 import Menu from '@mui/material/Menu';
 import MenuItem from '@mui/material/MenuItem';
 import Toolbar from '@mui/material/Toolbar';
-import * as React from 'react';
+import { MouseEvent, PropsWithChildren, useEffect, useRef, useState } from 'react';
 import { useScrollDirection } from 'react-use-scroll-direction';
 import DropdownList from '../list/list';
 import Title from '../typography/title/title';
 import XSText from '../typography/xs-text/xs-text';
 import styles from './navbar.module.scss';
-import { pages } from '@/utils/consts/menu';
+import { Link } from '@mui/material';
 
-export default function Navbar() {
-
-  const { closeMenu, openMenu } = React.useContext(menuBarContext);
-
-  const [anchorElNav, setAnchorElNav] = React.useState<null | HTMLElement>(null);
-
-  const handleOpenNavMenu = (event: React.MouseEvent<HTMLElement>) => {
-    setAnchorElNav(event.currentTarget);
-    openMenu();
-  };
-
-  const handleCloseNavMenu = () => {
-    setAnchorElNav(null);
-    closeMenu();
-  };
-
-  const ref = React.useRef<HTMLElement>(null);
-  const barRef = React.useRef<HTMLElement | null>(null);
-  const [isIntersecting, setIsIntersecting] = React.useState(true);
-  const [bar, setBar] = React.useState(false);
-
+export default function Navbar(props: PropsWithChildren<{ closeMenu(): void, openMenu(): void; }>) {
+  const { closeMenu, openMenu } = props;
+  const [anchorElNav, setAnchorElNav] = useState<null | HTMLElement>(null);
+  const navRef = useRef<HTMLElement>(null);
+  const barRef = useRef<HTMLElement | null>(null);
+  const [isIntersecting, setIsIntersecting] = useState(true);
+  const [bar, setBar] = useState(false);
   const { isScrollingUp, isScrollingDown } = useScrollDirection();
-  React.useEffect(() => {
+
+  useEffect(() => {
     const observer = new IntersectionObserver((entries, observer) => {
       if (entries[0].isIntersecting) {
         setIsIntersecting(true);
@@ -54,14 +41,14 @@ export default function Navbar() {
       root: null,
       threshold: 0
     });
-    if (ref.current) {
-      observer.unobserve(ref.current);
-      observer.observe(ref.current);
-    }
 
+    if (navRef.current) {
+      observer.unobserve(navRef.current);
+      observer.observe(navRef.current);
+    }
   }, []);
 
-  React.useEffect(() => {
+  useEffect(() => {
     if (isScrollingUp && !isScrollingDown) {
       setBar(true);
     } else if (!isScrollingUp && isScrollingDown) {
@@ -69,9 +56,18 @@ export default function Navbar() {
     }
   }, [isScrollingUp, isScrollingDown]);
 
+  function handleOpenNavMenu(event: MouseEvent<HTMLElement>) {
+    setAnchorElNav(event.currentTarget);
+    openMenu();
+  };
+
+  function handleCloseNavMenu() {
+    setAnchorElNav(null);
+    closeMenu();
+  };
 
   return (
-    <nav ref={ref} className={styles['wraper']}>
+    <Box component='nav' ref={navRef} className={styles['wraper']}>
       <AppBar ref={barRef} position="static" id={styles['top-bar']} className={(bar && !isIntersecting ? styles['current-bar'] : '')} style={{
         opacity: (isIntersecting || bar) ? 1 : 0,
         visibility: (isIntersecting || bar) ? 'visible' : 'hidden',
@@ -80,12 +76,12 @@ export default function Navbar() {
       }} >
         <Container>
           <Toolbar>
-            <a
+            <Link
               href='#'
               style={{ flexGrow: 1 }}
             >
               <img src={(bar && !isIntersecting) ? "https://themes-themegoods.b-cdn.net/grandtour/demo/wp-content/themes/grandtour/images/logo@2x.png" : "https://themes-themegoods.b-cdn.net/grandtour/demo/wp-content/themes/grandtour/images/logo@2x_white.png"} alt="" width="92" height="22" />
-            </a>
+            </Link>
 
             <Box className={styles['menu-icon']} sx={{ flexGrow: 1, display: { xs: 'flex', md: 'none' } }}>
               <IconButton
@@ -111,15 +107,15 @@ export default function Navbar() {
                   vertical: 'top',
                   horizontal: 'left',
                 }}
-                open={Boolean(anchorElNav)}
+                open={!!anchorElNav}
                 onClose={handleCloseNavMenu}
                 sx={{
                   display: { xs: 'block', md: 'none' },
                 }}
               >
-                <div className={styles['close-btn']} onClick={handleCloseNavMenu}>
+                <Box className={styles['close-btn']} onClick={handleCloseNavMenu}>
                   <CloseIcon></CloseIcon>
-                </div>
+                </Box>
                 {pages.map((page) => (
                   <MenuItem className={styles['menu-item']} key={page.menuName} onClick={handleCloseNavMenu}>
                     <Title title={page.menuName}></Title>
@@ -129,7 +125,7 @@ export default function Navbar() {
             </Box>
             <Box sx={{ display: { xs: 'none', md: 'flex' } }} className={styles['nav-link']}>
               {pages.map((page) => (
-                <div key={page.menuName} className={styles['nav-link__container']}>
+                <Box key={page.menuName} className={styles['nav-link__container']}>
                   <Button
                     className={styles['button']}
                     key={page.menuName}
@@ -141,13 +137,13 @@ export default function Navbar() {
                     </XSText>
                   </Button>
                   <DropdownList items={page.children} className={'hidden animate__animated animate__zoomIn ' + styles['dropdown']}></DropdownList>
-                </div>
+                </Box>
               ))}
             </Box>
             <ShoppingCartOutlinedIcon></ShoppingCartOutlinedIcon>
           </Toolbar>
         </Container>
       </AppBar>
-    </nav>
+    </Box>
   );
 };

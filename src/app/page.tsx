@@ -1,14 +1,17 @@
 'use client';
 import AticleItem from '@/components/articles/article-item';
+import LoadingOverlay from '@/components/loading-overlay/LoadingOverlay';
 import OfferItem from '@/components/offers/offer-item';
 import ProfitItem from '@/components/profit/profit-item';
 import Section from '@/components/section/section';
 import { getArticles, getDestination, getOffers, getProfits } from '@/services/tours.service';
-import { useEffect, useState } from 'react';
+import { Box } from '@mui/material';
+import { PropsWithChildren, useEffect, useState } from 'react';
 import { SectionModel } from '../models/Tours';
 import styles from './page.module.scss';
 
 export default function Home() {
+  const [loading, setLoading] = useState(true);
   const [destinations, setDestinations] = useState<SectionModel>();
   const [offers, setOffers] = useState<SectionModel>();
   const [profits, setProfits] = useState<SectionModel>();
@@ -55,16 +58,19 @@ export default function Home() {
       setOffers(offersList);
       setProfits(profitsList);
       setArticles(articlesList);
+      setLoading(false);
     });
   }, []);
 
   return (
-    <main className={'bg-light'} style={{ paddingTop: '70px' }}>
-      {destinations && <Section info={destinations}></Section>}
-      {offers && <Section info={offers}></Section>}
-      {profits && <Section info={profits}></Section>}
-      <section className={styles['bg-section']}></section>
-      {articles && <Section info={articles}></Section>}
-    </main>
-  );
+    <LoadingOverlay loading={loading}>
+      <Box className={'bg-light'} style={{ paddingTop: '70px' }}>
+        {destinations && <Section info={destinations}></Section>}
+        {offers && <Section info={offers}></Section>}
+        {profits && <Section info={profits}></Section>}
+        <Box component='section' className={styles['bg-section']}></Box>
+        {articles && <Section info={articles}></Section>}
+      </Box>
+    </LoadingOverlay>
+  )
 }

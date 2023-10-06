@@ -12,22 +12,22 @@ export default function DropdownList(props: PropsWithChildren<{ className: strin
   const { className, items } = props;
   return (
     <Box className={className + ' ' + styles['box']}>
-      <nav>
+      <Box component='nav'>
         <List>
           {
             items.map((item, i) => (
-              <div key={item}>
+              <Box key={item}>
                 <ListItem className={styles['list-item']}>
                   <ListItemText primary={<XSText sx={{ fontSize: '0.8rem !important' }} text={item}></XSText>} />
                 </ListItem>
                 {i !== items.length - 1 && <Divider sx={{
                   margin: '0 15px'
                 }}></Divider >}
-              </div>
+              </Box>
             ))
           }
         </List>
-      </nav>
+      </Box>
     </Box >
   );
 }

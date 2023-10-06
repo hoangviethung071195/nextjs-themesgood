@@ -1,7 +1,7 @@
 'use client';
 import ImageCard from '@/components/card/card';
 import SectionTitle from '@/components/title/section-title';
-import { Container, SxProps, Theme } from '@mui/material';
+import { Box, Container, SxProps, Theme } from '@mui/material';
 import { CSSProperties, PropsWithChildren } from 'react';
 import styles from './section.module.scss';
 
@@ -31,10 +31,10 @@ export default function Section(props: PropsWithChildren<{
   } = props.info;
 
   return (
-    <section className={styles["section"]} style={sectionStyle}>
+    <Box component='section' className={styles["section"]} style={sectionStyle}>
       <Container>
         <SectionTitle title={title} subTitle={subTitle}></SectionTitle>
-        <div className={styles["section__card"]}>
+        <Box className={styles["section__card"]}>
           {
             items.map(item => (
               <ImageCard key={item.image} item={item} cardMediaClass={cardMediaClass} cardMediaStyle={cardMediaStyle}>
@@ -42,9 +42,8 @@ export default function Section(props: PropsWithChildren<{
               </ImageCard>
             ))
           }
-        </div>
-
+        </Box>
       </Container>
-    </section>
+    </Box>
   );
 }
